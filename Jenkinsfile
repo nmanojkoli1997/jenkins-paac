@@ -52,7 +52,7 @@ echo "${NODE_LABELS}"
                 post {
                     success{
                         echo "archiving"
-                        archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+                        archiveArtifacts artifacts: '**/*.jar', followSymlinks: false
                         }
                 }
         }
