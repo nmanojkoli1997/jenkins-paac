@@ -7,8 +7,6 @@ pipeline{
             }
   steps {
     git branch: 'main', credentialsId: 'git', url: 'https://github.com/nmanojkoli1997/devopsclass.git'
-         }
-         steps{
             sh '''
             #!/bin/bash
 cd /home/ubuntu/workspace/ctest/
