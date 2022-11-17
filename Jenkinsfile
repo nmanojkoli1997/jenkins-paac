@@ -47,7 +47,7 @@ echo "${NODE_LABELS}"
                 git 'https://github.com/Coveros/helloworld'                
                 sh 'mvn clean install'
                 echo "${NODE_NAME}"
-                echo "${JOB_URL}/console"
+                echo "${JOB_URL}console"
             }
         }
     }
