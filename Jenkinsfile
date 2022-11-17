@@ -49,6 +49,12 @@ echo "${NODE_LABELS}"
                 echo "${NODE_NAME}"
                 echo "${JOB_URL}console"
             }
+                post {
+                    success{
+                        echo "archiving"
+                        archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+                        }
+                }
         }
     }
     
