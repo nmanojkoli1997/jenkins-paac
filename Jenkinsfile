@@ -35,5 +35,16 @@ echo "${NODE_LABELS}"
                 echo "${NODE_NAME}"
             }
         }
+            stage('MAVEN BUILD'){
+                agent {
+                label 'maven'
+            }
+            steps{
+                echo "deploying"
+                sh 'mvn clean install'
+                echo "${NODE_NAME}"
+            }
+        }
     }
+    
 }
