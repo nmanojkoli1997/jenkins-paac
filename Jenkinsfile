@@ -40,7 +40,8 @@ echo "${NODE_LABELS}"
                 label 'maven'
             }
             steps{
-                echo "deploying"
+                echo "maven build"
+                git 'https://github.com/Coveros/helloworld'                
                 sh 'mvn clean install'
                 echo "${NODE_NAME}"
             }
