@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('GIT') {
             agent {
-                lable 'gcc'
+                label 'gcc'
             }
   steps {
     git branch: 'main', credentialsId: 'git', url: 'https://github.com/nmanojkoli1997/devopsclass.git'
