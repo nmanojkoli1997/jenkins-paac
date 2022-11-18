@@ -1,8 +1,17 @@
 pipeline{
     agent any
     tools {
-  maven 'MAVEN3.8'
-}
+    maven 'MAVEN3.8'
+    }
+    parameters {
+    string defaultValue: 'MANOJ', name: 'NAME'
+    string defaultValue: '11/22', name: 'DATE'
+    string defaultValue: '1.5', name: 'VERSION'
+    choice choices: ['main', 'branch', 'master', 'production'], name: 'BRANCH'
+    choice choices: ['TEST', 'UTA', 'PRODUCTION'], name: 'DEPLOY'
+
+    }
+
     stages{
         stage('GIT') {
             agent {
@@ -12,18 +21,20 @@ pipeline{
     git branch: 'main', credentialsId: 'git', url: 'https://github.com/nmanojkoli1997/devopsclass.git'
             sh '''
             #!/bin/bash
-cd /home/ubuntu/workspace/ctest/
-make
-mkdir -p target
-cp -r /home/ubuntu/workspace/ctest/*.exe target/
-echo "${NODE_LABELS}"
-            '''
+            cd /home/ubuntu/workspace/ctest/
+            make
+            mkdir -p target
+            cp -r /home/ubuntu/workspace/ctest/*.exe target/
+            echo "${NODE_LABELS}"
+                        '''
          }
         }   
         stage('TEST'){
             agent {
                 label 'master'
             }
+            parallel{
+                stage{
             steps{
                 echo "testing"
                 echo "${NODE_NAME}"
@@ -37,6 +48,7 @@ echo "${NODE_LABELS}"
                 echo "deploying"
                 echo "${NODE_NAME}"
             }
+        }
         }
             stage('MAVEN BUILD'){
                 agent {
