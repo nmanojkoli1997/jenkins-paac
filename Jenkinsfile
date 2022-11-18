@@ -34,7 +34,7 @@ pipeline{
                 label 'master'
             }
             parallel{
-                stage{
+                stage('parallel1'){
                     steps{
                         echo "testing"
                         echo "${NODE_NAME}"
