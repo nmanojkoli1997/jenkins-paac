@@ -35,20 +35,21 @@ pipeline{
             }
             parallel{
                 stage{
-            steps{
-                echo "testing"
-                echo "${NODE_NAME}"
+                    steps{
+                        echo "testing"
+                        echo "${NODE_NAME}"
+                        }
+                    }
+                    stage('DEPLOY'){
+                        agent {
+                        label 'master'
+                        }
+                        steps{
+                        echo "deploying"
+                        echo "${NODE_NAME}"
+                         }
+                    }
             }
-        }
-            stage('DEPLOY'){
-                agent {
-                label 'master'
-            }
-            steps{
-                echo "deploying"
-                echo "${NODE_NAME}"
-            }
-        }
         }
             stage('MAVEN BUILD'){
                 agent {
