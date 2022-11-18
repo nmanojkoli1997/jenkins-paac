@@ -30,17 +30,20 @@ pipeline{
          }
         }   
         stage('TEST'){
-            agent {
-                label 'master'
-            }
             parallel{
                 stage('parallel1'){
+                    agent {
+                label 'master'
+            }
                     steps{
                         echo "testing"
                         echo "${NODE_NAME}"
                         }
                     }
                     stage('DEPLOY'){
+                        agent {
+                label 'master'
+            }
                         agent {
                         label 'master'
                         }
