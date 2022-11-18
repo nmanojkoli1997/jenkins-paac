@@ -42,10 +42,7 @@ pipeline{
                     }
                     stage('DEPLOY'){
                         agent {
-                label 'master'
-            }
-                        agent {
-                        label 'master'
+                        label 'gcc'
                         }
                         steps{
                         echo "deploying"
