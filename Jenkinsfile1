@@ -65,7 +65,7 @@ pipeline{
                 post {
                     success{
                         echo "archiving"
-                        archiveArtifacts artifacts: '**/*.jar', followSymlinks: false
+                        archiveArtifacts artifacts: '**/*.war', followSymlinks: false
                         deploy adapters: [tomcat9(credentialsId: 'tom9ro', path: '', url: 'http://44.212.29.229:8080/')], contextPath: null, onFailure: false, war: '**/*.war'
                         }
                 }
