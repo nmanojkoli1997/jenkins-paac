@@ -10,6 +10,7 @@ pipeline{
             steps{
                 git 'https://github.com/Coveros/helloworld'
             }
+        }    
             stage('BUILD'){
                 steps{
                   sh 'mvn clean install'  
@@ -26,6 +27,5 @@ pipeline{
                     }
                 }
             }
-        }
     }
 }
