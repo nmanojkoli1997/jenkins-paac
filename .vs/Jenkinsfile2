@@ -14,6 +14,7 @@ pipeline{
             stage('BUILD'){
                 steps{
                   sh 'mvn clean install'  
+                  stash 'buildthings'
                 }
             }
             stage('DEPLOYING'){
@@ -23,6 +24,7 @@ pipeline{
                 }
                 post{
                     success{
+                        unstash 'buildthings'
                         deploy adapters: [tomcat9(credentialsId: 'tom9ro', path: '', url: 'http://54.89.2.138:8080/')], contextPath: null, onFailure: false, war: '**/*.war'
                     }
                 }
