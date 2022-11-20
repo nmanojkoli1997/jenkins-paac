@@ -20,7 +20,7 @@ pipeline{
             stage('DEPLOYING'){
                 steps{
                      echo "archiving"
-                        archiveArtifacts artifacts: '**/*.jar', followSymlinks: false
+                        archiveArtifacts artifacts: '**/*.war', followSymlinks: false
                 }
                 post{
                     success{
