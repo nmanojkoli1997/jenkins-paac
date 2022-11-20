@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage('CLONING REPO'){
             steps{
-                git 'https://github.com/Coveros/helloworld'
+                git 'https://github.com/nmanojkoli1997/hello-world.git'
             }
         }    
             stage('BUILD'){
