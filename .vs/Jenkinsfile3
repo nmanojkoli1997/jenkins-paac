@@ -33,7 +33,7 @@ pipeline{
                 }
                 post{
                     success{
-                        deploy adapters: [tomcat9(credentialsId: 'tom9ro', path: '', url: 'http://107.23.36.57:8080/')], contextPath: null, onFailure: false, war: '**/*.war'
+                        deploy adapters: [tomcat9(credentialsId: 'tom9ro', path: '', url: 'http://3.83.55.48:8080/')], contextPath: null, onFailure: false, war: '**/*.war'
                     }
                 }
             }
