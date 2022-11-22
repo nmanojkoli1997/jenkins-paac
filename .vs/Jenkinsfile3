@@ -21,6 +21,11 @@ pipeline{
                   sh 'mvn test'  
                 }
             }
+            stage('CODE ANALYSIS'){
+                steps{
+                  sh 'mvn checkstyle:checkstyle'  
+                }
+            }
             stage('DEPLOYING'){
                 steps{
                      echo "archiving"
