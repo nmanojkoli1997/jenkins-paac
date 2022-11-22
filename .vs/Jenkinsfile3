@@ -1,0 +1,36 @@
+pipeline{
+    agent{
+        label 'maven'
+    }
+    tools {
+    maven 'MAVEN3.8'
+    }
+    stages{
+        stage('CLONING REPO'){
+            steps{
+                git 'https://github.com/nmanojkoli1997/hello-world.git'
+            }
+        }    
+            stage('BUILD'){
+                steps{
+                  sh 'mvn clean install'  
+                }
+            }
+             stage('TESTING'){
+                steps{
+                  sh 'mvn test'  
+                }
+            }
+            stage('DEPLOYING'){
+                steps{
+                     echo "archiving"
+                        archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+                }
+                post{
+                    success{
+                        deploy adapters: [tomcat9(credentialsId: 'tom9ro', path: '', url: 'http://107.23.36.57:8080/')], contextPath: null, onFailure: false, war: '**/*.war'
+                    }
+                }
+            }
+    }
+}
